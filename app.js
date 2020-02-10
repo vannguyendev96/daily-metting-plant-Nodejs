@@ -10,15 +10,15 @@ const Job = require('./CronJob/index');
 
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/APIAuthentication');
-// const dbpath = "mongodb://van:van123@ds263808.mlab.com:63808/dms-task-schedule";
+//mongoose.connect('mongodb://localhost/APIAuthentication');
+const dbpath = "mongodb://van:van123@ds263808.mlab.com:63808/dms-task-schedule";
 
-// const mongo = mongoose.connect(dbpath, {useNewUrlParser: true });
-// mongo.then(() => {
-// console.log('connected');
-// }).catch((err) => {
-// console.log('err', err);
-// });
+const mongo = mongoose.connect(dbpath, {useNewUrlParser: true });
+mongo.then(() => {
+console.log('connected');
+}).catch((err) => {
+console.log('err', err);
+});
 
 
 const app = express();
