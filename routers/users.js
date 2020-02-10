@@ -30,4 +30,7 @@ router.route('/')
     //.get(UserController.secret);
     .get(passportJWT, UserController.GetAllUser);
 
+router.route('/checkadmin')
+    .post(UserController.CheckAdmin);
+
 module.exports = router;

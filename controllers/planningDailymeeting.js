@@ -5,13 +5,21 @@ const repository = require('../repositories/PlanningDailyMeetingRepository');
 module.exports ={
     GetAll: async (req,res,next) => {
         let {userid} = req.body;
-        repository.findAll(userid).then((PlanDailyMeeting) => {
-            res.json({
-                result: 'ok',
-                data: PlanDailyMeeting,
-                lengh: PlanDailyMeeting.lengh,
-                message:'get Plan Daily Meeting successfully'
-            })
+        var perPage = 10
+        var page = req.params.page || 1
+        repository.findAll(userid,perPage,page).then((PlanDailyMeeting) => {
+            repository.countAll(userid).then((dataplanning) => {
+                res.json({
+                    result: 'ok',
+                    data: PlanDailyMeeting,
+                    length: PlanDailyMeeting.length,
+                    pagecount: Math.ceil(dataplanning.length / perPage),
+                    currentpage: page,
+                    message:'get Plan Daily Meeting successfully'
+                })
+            });
+
+            
           }).catch((error) => res.json({
             result: 'failed',
             data: {},

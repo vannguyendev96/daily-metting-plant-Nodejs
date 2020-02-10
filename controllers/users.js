@@ -79,13 +79,34 @@ module.exports ={
             res.json({
                 result: 'ok',
                 data: User,
-                lengh: User.lengh,
+                length: User.length,
                 message:'get User successfully'
             })
           }).catch((error) => res.json({
             result: 'failed',
             data: {},
             message:'get User failed' + error
+        }));
+    },
+    CheckAdmin: async (req,res,next) => {
+        const { userid } = req.body;
+        repository.checkAdmin(userid).then((User) =>{
+            if(User.length > 0){
+                res.json({
+                    result: 'ok',
+                    message:'User is Admin'
+                })
+            }
+            else{
+                res.json({
+                    result: 'failed',
+                    message:'User is not Admin'
+                })
+            }
+        }).catch((error) => res.json({
+            result: 'failed',
+            data: {},
+            message:'Check User failed' + error
         }));
     }
 

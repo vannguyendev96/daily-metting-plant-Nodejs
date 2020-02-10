@@ -21,6 +21,10 @@ class UserRepository {
     return this.model.find({ "$text": {"$search": searchText}});
   }
 
+  checkAdmin(userid){
+    return this.model.find({_id:userid,isAdmin:true});
+  }
+
   //update todo
   updateById(id, object) {
     const query = { _id: id };

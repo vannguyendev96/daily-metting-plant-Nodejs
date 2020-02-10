@@ -6,7 +6,7 @@ const passportJWT = passport.authenticate('jwt', { session:false});
 const PlanningDailyMeetingController = require('../controllers/planningDailymeeting');
 
 //get all
-router.route('/Getbyuser')
+router.route('/Getbyuser/:page')
     .post(PlanningDailyMeetingController.GetAll);
 //create
 router.route('/')

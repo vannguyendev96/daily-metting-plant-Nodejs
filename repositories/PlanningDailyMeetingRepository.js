@@ -14,10 +14,14 @@ class PlanningDailyMeetingRepository {
     return planDaily.save();
   }
 
-  // return all todos
-
-  findAll(idUser) {
+  //count all item
+  countAll(idUser) {
     return this.model.find({userid: idUser});
+  }
+
+  // return all todos
+  findAll(idUser,perPage,page) {
+    return this.model.find({userid: idUser}).skip((perPage * page) - perPage).limit(perPage);
   }
 
   //search
